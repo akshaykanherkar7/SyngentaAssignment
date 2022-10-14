@@ -7,12 +7,15 @@ app.use(express.json());
 app.use(cors());
 
 const connection = require("./Config/Config");
+const OrgController = require("./Controller/Organization.controller");
+const FieldController = require("./Controller/Fields.controller");
 
 app.get("/", async (req, res) => {
   return res.status(200).send("HomePage");
 });
 
-
+app.use("/organization", OrgController);
+app.use("/fields", FieldController);
 
 app.listen(process.env.PORT, async () => {
   try {
