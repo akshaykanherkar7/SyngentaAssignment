@@ -8,6 +8,7 @@ app.use(cors());
 
 const connection = require("./Config/Config");
 const OrgController = require("./Controller/Organization.controller");
+const PropController = require("./Controller/Property.controller");
 const FieldController = require("./Controller/Fields.controller");
 
 app.get("/", async (req, res) => {
@@ -15,6 +16,7 @@ app.get("/", async (req, res) => {
 });
 
 app.use("/organization", OrgController);
+app.use("/properties", PropController);
 app.use("/fields", FieldController);
 
 app.listen(process.env.PORT, async () => {
