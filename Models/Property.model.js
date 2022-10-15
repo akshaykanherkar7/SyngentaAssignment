@@ -1,14 +1,8 @@
 const mongoose = require("mongoose");
 
 const PropertySchema = new mongoose.Schema({
-  regions: String,
-  fields: String,
-  organization: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "organization",
-    },
-  ],
+  regions: {type: String , required: true},
+  fields: {type: String , required: true},
 });
 
 const PropertyModel = mongoose.model("property", PropertySchema);
