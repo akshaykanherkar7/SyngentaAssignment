@@ -1,10 +1,19 @@
 const mongoose = require("mongoose");
 
 const RegionSchema = new mongoose.Schema({
-  regions: { type: String, required: true },
+  region: { type: String, required: true },
   fields: { type: String, required: true },
-  subregions: [{ type: String, required: true }],
-  // properties: [{ type: mongoose.Schema.Types.ObjectId, ref: "properties" }],
+  subregions: [{ type: String }],
+  organization: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "organization",
+  },
+  property: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "property",
+    },
+  ],
 });
 
 const RegionModel = mongoose.model("region", RegionSchema);

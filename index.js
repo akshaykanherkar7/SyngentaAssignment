@@ -16,6 +16,7 @@ const connection = require("./Config/Config");
 const OrgController = require("./Controller/Organization.controller");
 const PropController = require("./Controller/Property.controller");
 const FieldController = require("./Controller/Fields.controller");
+const RegionController = require("./Controller/Region.controller");
 
 function isLoggedIn(req, res, next) {
   req.user ? next() : res.sendStatus(401);
@@ -57,6 +58,7 @@ app.get("/logout", (req, res) => {
 });
 
 app.use("/organization", OrgController);
+app.use("/region", RegionController);
 app.use("/properties", PropController);
 app.use("/fields", FieldController);
 

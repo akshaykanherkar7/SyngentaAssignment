@@ -4,8 +4,8 @@ const FieldController = express.Router();
 const FieldModel = require("../Models/Field.model");
 
 FieldController.post("/", async (req, res) => {
-  const { name, size, position } = req.body;
-  const field = new FieldModel({ name, size, position });
+  const { name, size, position, property } = req.body;
+  const field = new FieldModel({ name, size, position, property });
   await field.save();
   return res
     .status(200)

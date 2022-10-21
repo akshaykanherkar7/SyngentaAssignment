@@ -4,8 +4,8 @@ const PropController = express.Router();
 const PropertyModel = require("../Models/Property.model");
 
 PropController.post("/", async (req, res) => {
-  const { name, region } = req.body;
-  const prop = new PropertyModel({ name, region });
+  const { fields, region, field } = req.body;
+  const prop = new PropertyModel({ fields, region, field });
   await prop.save();
   return res
     .status(200)

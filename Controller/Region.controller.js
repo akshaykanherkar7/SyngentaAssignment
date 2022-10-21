@@ -4,8 +4,14 @@ const RegionController = express.Router();
 const RegionModel = require("../Models/Region.model");
 
 RegionController.post("/", async (req, res) => {
-  const { regions, fields, subregions } = req.body;
-  const reg = new RegionModel({ regions, fields, subregions });
+  const { region, fields, subregions, organization, property } = req.body;
+  const reg = new RegionModel({
+    region,
+    fields,
+    subregions,
+    organization,
+    property,
+  });
   await reg.save();
   return res
     .status(200)
@@ -14,6 +20,10 @@ RegionController.post("/", async (req, res) => {
 
 RegionController.get("/", async (req, res) => {
   const reg = await RegionModel.find();
+  return res.status(200).send({ data: reg });
+});
+RegionController.get("/:id", async (req, res) => {
+  const reg = await RegionModel.findById(req.params.id).populate("property");
   return res.status(200).send({ data: reg });
 });
 

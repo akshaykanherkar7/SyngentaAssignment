@@ -4,8 +4,8 @@ const OrgController = express.Router();
 const OrganizationModel = require("../Models/Organization.model");
 
 OrgController.post("/", async (req, res) => {
-  const { name } = req.body;
-  const org = new OrganizationModel({ name });
+  const { name, region } = req.body;
+  const org = new OrganizationModel({ name, region });
   await org.save();
   return res
     .status(200)
@@ -14,6 +14,12 @@ OrgController.post("/", async (req, res) => {
 
 OrgController.get("/", async (req, res) => {
   const org = await OrganizationModel.find();
+  return res.status(200).send({ data: org });
+});
+OrgController.get("/:id", async (req, res) => {
+  const org = await OrganizationModel.findById(req.params.id).populate(
+    "region"
+  );
   return res.status(200).send({ data: org });
 });
 
